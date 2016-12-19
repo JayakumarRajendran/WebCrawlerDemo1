@@ -4,12 +4,9 @@ import java.util.ArrayList;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
-import javax.ws.rs.MatrixParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -31,12 +28,12 @@ public class CrawlerController {
       
 	 * */
 	
-	String uri_value= "";
+	String url_value= "";
 	@POST
 	@Path("/default")
 	public Response CrowlerDefault(@FormParam("url") String url, @FormParam("requiredtype") String requesttype)
 	{
-		uri_value = url;
+		url_value = url;
 		String redirectpath = "/WebCrawler7/rest/crawler/get"+requesttype;
 		System.out.println("CowlerDefault: "+redirectpath);
 		ResponseBuilder builder =  Response.seeOther(UriBuilder.fromPath(redirectpath).build());
@@ -46,9 +43,10 @@ public class CrawlerController {
 	/*
 	 * this method will produce text based output*/
 	@GET
-	@Path("/gettext/{url}")
+	@Path("/gettext")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response CrowlerText(@MatrixParam("url") String url){
+	public Response CrowlerText(){
+		String url = url_value;
 		System.out.println("CrowlerText");
 		
 		CrawlerBO bo = new CrawlerBO();
@@ -59,20 +57,22 @@ public class CrawlerController {
 	
 	/*
 	 * this method will produce xml based output*/
-	@Path("/getxml/{url}")
+	@Path("/getxml")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
-	public Response CrowlerXML(@PathParam("url") String url){
+	public Response CrowlerXML(){
+		String url = url_value;
 		System.out.println("Cowler XML: "+url);
 		return Response.ok("<root> CrowlerXML <root>").build();
 	}
 	
 	/*
 	 * this method will produce json based output*/
-	@Path("/getjson/{url}")
+	@Path("/getjson")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response CrowlerJSON(@PathParam("url") String url){
+	public Response CrowlerJSON(){
+		String url = url_value;
 		System.out.println("Cowler JSON: "+url);
 		return Response.ok("{name:jay,company:wipro}").build();
 	}
