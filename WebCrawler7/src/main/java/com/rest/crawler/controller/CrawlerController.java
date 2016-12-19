@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.MatrixParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -28,11 +30,14 @@ public class CrawlerController {
 	 * http://localhost:8080/WebCrowler5/rest/crawl/default?url=http://wipro.com&requiredtype=xml  
       
 	 * */
+	
+	String uri_value= "";
 	@POST
 	@Path("/default")
 	public Response CrowlerDefault(@FormParam("url") String url, @FormParam("requiredtype") String requesttype)
 	{
-		String redirectpath = "/WebCrawler7/rest/crawler/get"+requesttype+"/"+url;
+		uri_value = url;
+		String redirectpath = "/WebCrawler7/rest/crawler/get"+requesttype;
 		System.out.println("CowlerDefault: "+redirectpath);
 		ResponseBuilder builder =  Response.seeOther(UriBuilder.fromPath(redirectpath).build());
 		return builder.build();
@@ -43,7 +48,7 @@ public class CrawlerController {
 	@GET
 	@Path("/gettext/{url}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response CrowlerText(@PathParam("url") String url){
+	public Response CrowlerText(@MatrixParam("url") String url){
 		System.out.println("CrowlerText");
 		
 		CrawlerBO bo = new CrawlerBO();
