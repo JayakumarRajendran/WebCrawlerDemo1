@@ -5,7 +5,7 @@
 <body bgcolor="AA8888">
 	<h1>Welcome to WebCrowler</h1>
 	
-	<form action="jersy/getdata">
+	<form action="rest/crawler/default" method="post" >
 		<br>Enter the URL: <input type="text" name="url">
 		<br>Select the output type: 
 			<select name="requiredtype">
