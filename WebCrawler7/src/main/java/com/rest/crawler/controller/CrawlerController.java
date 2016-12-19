@@ -7,6 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 /* this is the class to handle all type of request from the index page
  * this class is acting as a controller Using Jersey, restful webservices 
@@ -21,7 +22,9 @@ public class CrawlerController {
 	@Path("/gettext")
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response CrowlerText(){
-		return null;
+		System.out.println("CrowlerText");
+		
+		return Response.ok("CrowlerText").build();
 	}
 	
 	/*
@@ -30,7 +33,8 @@ public class CrawlerController {
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
 	public Response CrowlerXML(){
-		return  null;
+		System.out.println("CrowlerXML");
+		return Response.ok("<root> CrowlerXML <root>").build();
 	}
 	
 	/*
@@ -39,6 +43,7 @@ public class CrawlerController {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response CrowlerJSON(){
-		return  null;
+		System.out.println("Crowler JSON");
+		return Response.ok("{name:jay,company:wipro}").build();
 	}
 }
