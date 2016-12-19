@@ -28,7 +28,7 @@ public class CrawlerController {
 	@Path("/default")
 	public Response CrowlerDefault(@FormParam("url") String url, @FormParam("requiredtype") String requesttype)
 	{
-		String redirectpath = "/WebCrowler5/rest/crawler/get"+requesttype+"/"+url;
+		String redirectpath = "/WebCrawler7/rest/crawler/get"+requesttype+"/"+url;
 		System.out.println("CowlerDefault: "+redirectpath);
 		ResponseBuilder builder =  Response.seeOther(UriBuilder.fromPath(redirectpath).build());
 		return builder.build();
