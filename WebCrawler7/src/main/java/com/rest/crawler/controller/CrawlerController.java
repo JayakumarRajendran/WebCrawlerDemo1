@@ -30,12 +30,17 @@ public class CrawlerController {
 	 * */
 	@POST
 	@Path("/default")
+	@Produces(MediaType.TEXT_PLAIN)
 	public Response CrowlerDefault(@FormParam("url") String url, @FormParam("requiredtype") String requesttype)
 	{
-		String redirectpath = "/WebCrawler7/rest/crawler/get"+requesttype+"/"+url;
-		System.out.println("CowlerDefault: "+redirectpath);
-		ResponseBuilder builder =  Response.seeOther(UriBuilder.fromPath(redirectpath).build());
-		return builder.build();
+		CrawlerBO bo = new CrawlerBO();
+		// calling BO class method which will parse the document and give list of links
+		ArrayList<String> linklist = bo.CrowlerText(url);
+		String links = "";
+		for(String link : linklist){
+			links = links +link+ System.lineSeparator();
+		}
+		return Response.ok(links).build();
 	}
 	
 	/*
@@ -46,10 +51,7 @@ public class CrawlerController {
 	public Response CrowlerText(@PathParam("url") String url){
 		System.out.println("CrowlerText");
 		
-		CrawlerBO bo = new CrawlerBO();
-		// calling BO class method which will parse the document and give list of links
-		ArrayList<String> linklist = bo.CrowlerText(url);
-		return Response.ok(linklist).build();
+		return Response.ok("CrowlerText").build();
 	}
 	
 	/*
