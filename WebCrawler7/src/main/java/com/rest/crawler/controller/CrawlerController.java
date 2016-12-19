@@ -1,11 +1,10 @@
 package com.rest.crawler.controller;
 
-
-
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -35,13 +34,12 @@ public class CrawlerController {
 		return builder.build();
 	}
 	
-	
 	/*
 	 * this method will produce text based output*/
 	@GET
 	@Path("/gettext/{url}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response CrowlerText(){
+	public Response CrowlerText(@PathParam("url") String url){
 		System.out.println("CrowlerText");
 		
 		return Response.ok("CrowlerText").build();
@@ -52,8 +50,8 @@ public class CrawlerController {
 	@Path("/getxml/{url}")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
-	public Response CrowlerXML(){
-		System.out.println("CrowlerXML");
+	public Response CrowlerXML(@PathParam("url") String url){
+		System.out.println("Cowler XML: "+url);
 		return Response.ok("<root> CrowlerXML <root>").build();
 	}
 	
@@ -62,8 +60,8 @@ public class CrawlerController {
 	@Path("/getjson/{url}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response CrowlerJSON(){
-		System.out.println("Crowler JSON");
+	public Response CrowlerJSON(@PathParam("url") String url){
+		System.out.println("Cowler JSON: "+url);
 		return Response.ok("{name:jay,company:wipro}").build();
 	}
 }
