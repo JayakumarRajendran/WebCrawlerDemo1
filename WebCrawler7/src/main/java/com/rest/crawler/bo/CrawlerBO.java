@@ -14,6 +14,7 @@ public class CrawlerBO {
 
 	public ArrayList<String> CrowlerText(String url) {
 
+		System.out.println("url from bo : "+url);
 		ArrayList<String> linkslist = new ArrayList<>();
 		System.out.println("Welcome to JSOUP from BO class");
 		// img
