@@ -39,7 +39,7 @@ public class CrawlerController {
 	/*
 	 * this method will produce text based output*/
 	@GET
-	@Path("/gettext")
+	@Path("/gettext/{url}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response CrowlerText(){
 		System.out.println("CrowlerText");
@@ -49,7 +49,7 @@ public class CrawlerController {
 	
 	/*
 	 * this method will produce xml based output*/
-	@Path("/getxml")
+	@Path("/getxml/{url}")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
 	public Response CrowlerXML(){
@@ -59,7 +59,7 @@ public class CrawlerController {
 	
 	/*
 	 * this method will produce json based output*/
-	@Path("/getjson")
+	@Path("/getjson/{url}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response CrowlerJSON(){
