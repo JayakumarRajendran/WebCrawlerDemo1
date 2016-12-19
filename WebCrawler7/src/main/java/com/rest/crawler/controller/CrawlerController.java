@@ -1,5 +1,7 @@
 package com.rest.crawler.controller;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -10,6 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriBuilder;
+
+import com.rest.crawler.bo.CrawlerBO;
 
 /* this is the class to handle all type of request from the index page
  * this class is acting as a controller Using Jersey, restful webservices 
@@ -42,7 +46,10 @@ public class CrawlerController {
 	public Response CrowlerText(@PathParam("url") String url){
 		System.out.println("CrowlerText");
 		
-		return Response.ok("CrowlerText").build();
+		CrawlerBO bo = new CrawlerBO();
+		// calling BO class method which will parse the document and give list of links
+		ArrayList<String> linklist = bo.CrowlerText(url);
+		return Response.ok(linklist).build();
 	}
 	
 	/*

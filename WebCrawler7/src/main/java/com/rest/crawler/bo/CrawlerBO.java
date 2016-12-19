@@ -6,7 +6,8 @@ public class CrawlerBO {
 
 	public ArrayList<String> CrowlerText(String url) {
 
-		return null;
+		ArrayList<String> linkslist = new ArrayList<>();
+		return linkslist;
 	}
 
 	public ArrayList<String> CrowlerXML(String url) {
